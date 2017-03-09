@@ -13,6 +13,7 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Kortelës");
 		setSize(1000, 400);	
+		setResizable(false);
 		
 		init();
 	}

@@ -6,6 +6,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import dataStructures.Player;
 
 public class CardsDecksDrawer {
@@ -80,6 +82,7 @@ public class CardsDecksDrawer {
 			
 			for (int j=0; j<playersList.get(i).getCards().size(); j++) {
 				
+				
 				g.setColor(playersList.get(i).getCardsColor());
 				g.fillOval((cardWidth)*(j)+margin_left, cardHeight*(i)+margin_top, cardHeight, cardWidth);
 				
@@ -98,7 +101,7 @@ public class CardsDecksDrawer {
 			
 			
 		}		
-		
+
 		
 	}
 

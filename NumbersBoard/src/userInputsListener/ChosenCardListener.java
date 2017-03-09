@@ -43,11 +43,13 @@ public class ChosenCardListener extends MouseAdapter{
 		
 		int selectedCard = (x-margin_left)/cardWidth;
 
-		if ((y-margin_top)/cardHeight == currentPlayerID){
+		if ( ((y-margin_top)/cardHeight == currentPlayerID)
+				&&((x-margin_left)/cardWidth <= playersList.get(currentPlayerID).getCards().size())){
 			
 			for (Player player : playersList)
 				for (Card card : player.getCards()) 
 					card.setActive(false);
+			
 				
 			playersList.get(currentPlayerID).getCards().get(selectedCard).setActive(true);
 			

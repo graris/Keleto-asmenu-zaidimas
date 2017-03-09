@@ -11,7 +11,7 @@ public class Player {
 	
 	public Player(){
 		for (int i = 1; i <= 10; i++)
-			cardsDeck.add(new Card(i, false));
+			cardsDeck.add(new Card(i, false, this));
 	}
 
 	public boolean IsItMyTurn() {
