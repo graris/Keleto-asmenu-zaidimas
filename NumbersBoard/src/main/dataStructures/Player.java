@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class Player {
 	
 	private boolean ItIsMyTurn = false;
-	private ArrayList<Card> cardsDeck = new ArrayList<Card>();
+	private ArrayList<Integer> cardsDeck = new ArrayList<Integer>();
 	private Color cardsColor = new Color(0);
 	
 	public Player(){
 		for (int i = 1; i <= 10; i++)
-			cardsDeck.add(new Card(i, false));
+			cardsDeck.add(i);
 	}
 
 	public boolean IsItMyTurn() {
@@ -22,15 +22,13 @@ public class Player {
 		this.ItIsMyTurn = isItMyTurn;
 	}
 	
-	public void removeCardFromDeck(int cardValue){
-		
-		for(int i = 0; i <cardsDeck.size(); i++) 		
-			if (cardsDeck.get(i).getValue() == cardValue)
-				cardsDeck.remove(i);
+	public void removeCardFromDeck(int card){
+		if(cardsDeck.contains(card))
+			cardsDeck.remove((Object)card);
 		
 	}
 
-	public ArrayList<Card> getCards() {
+	public ArrayList<Integer> getCards() {
 		return cardsDeck;
 	}
 

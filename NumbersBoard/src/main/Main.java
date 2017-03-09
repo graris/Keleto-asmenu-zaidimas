@@ -11,21 +11,23 @@ import javax.swing.JPanel;
 import dataStructures.Player;
 import drawer.CardsDecksDrawer;
 import frames.MainFrame;
-import drawer.TableDrawer;
+import userInputsListener.ChosenCardListener;
 
 public class Main extends JPanel{
 	
+	private ArrayList<Player> playersList = new ArrayList<Player>();
+	
+	private	CardsDecksDrawer cdd = new CardsDecksDrawer(); 	
+	
 	public static void main(String[] args) {
 		new MainFrame();
-		
+		//new Main();
+	
 	}
 	
-	@Override
-	public void paint(Graphics g) {
+	public Main() {
 		
-		super.paintComponents(g);
-		
-		ArrayList<Player> playersList = new ArrayList<Player>();
+			
 		
 		playersList.add(new Player());
 		playersList.add(new Player());
@@ -41,12 +43,14 @@ public class Main extends JPanel{
 		playersList.get(2).removeCardFromDeck(9);
 		playersList.get(2).removeCardFromDeck(10);
 		
-		new CardsDecksDrawer().drawCardsDecks(g, playersList);
-		TableDrawer drawer = new TableDrawer();
-		drawer.drawTable(g);
-		drawer.drawCardInTable(g, 1, 1, playersList.get(0), 1);
-		drawer.drawCardInTable(g, 1, 1, playersList.get(1), 5);
-		drawer.drawCardInTable(g, 1, 1, playersList.get(2), 6);
+		playersList.get(0).setIsItMyTurn(true);
+		
+		this.addMouseListener(new ChosenCardListener(this, playersList, cdd.getMargin_top(), 
+													 cdd.getMargin_left(), cdd.getCardHeight(), 
+													 cdd.getCardWidth()));
+		this.setFocusable(true);
+		
+		
 		drawer.drawCardInTable(g, 1, 1, playersList.get(0), 10);
 		drawer.drawCardInTable(g, 0, 1, playersList.get(1), 10);
 		drawer.drawCardInTable(g, 1, 2, playersList.get(1), 8);
@@ -55,6 +59,18 @@ public class Main extends JPanel{
 
 			
 	}
+	
+	@Override
+	public void paint(Graphics g) {
+		
+		super.paintComponents(g);
+		
+		cdd.drawCardsDecks(g, playersList);
+	
+			
+	}
+	
+	
 	
 	
 
