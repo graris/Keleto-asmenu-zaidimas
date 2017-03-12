@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
+import dataStructures.Card;
 import dataStructures.Player;
 import dataStructures.Square;
 import drawer.CardsDecksDrawer;
@@ -25,6 +28,10 @@ public class Main extends JPanel{
 	private	CardsDecksDrawer cdd = new CardsDecksDrawer(); 	
 	
 	private TableDrawer td = new TableDrawer();
+	
+	private GameLogicHandler gameLogicHandler;
+	
+	private boolean gameIsOver = false;
 	
 	public static void main(String[] args) {
 		new MainFrame();
@@ -59,6 +66,8 @@ public class Main extends JPanel{
 		
 		playersList.get(0).setIsItMyTurn(true);
 		
+		
+		
 		this.addMouseListener(new BoardListener(this, playersList, board));
 		
 		this.addMouseListener(new ChosenCardListener(this, playersList, cdd.getMargin_top(), 
@@ -66,7 +75,7 @@ public class Main extends JPanel{
 													 cdd.getCardWidth()));
 		this.setFocusable(true);
 		
-		
+		gameLogicHandler = new GameLogicHandler(playersList, board);
 
 		//drawer.drawCardInTable(g, 1, 1, playersList.get(2), 6);
 		
@@ -78,6 +87,8 @@ public class Main extends JPanel{
 	public void paint(Graphics g) {
 
 		super.paintComponents(g);
+		
+		if(!gameIsOver){
 		
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, 1000, 400);
@@ -92,11 +103,14 @@ public class Main extends JPanel{
 		cdd.drawCardsDecks(g, playersList);
 		
 		
+		} else {
+			gameLogicHandler.calculateScore();
+		}
+		
+		
+		gameIsOver = gameLogicHandler.isGameOver(playersList);
 			
 	}
-	
-	
-	
-	
+
 
 }
