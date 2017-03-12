@@ -54,23 +54,23 @@ public class BoardListener extends MouseAdapter{
 		
 		try {
 			
-			for (Player player : playersList) {
+			for (int i=0; i<playersList.size(); i++) {
 				
-				for (Card card : player.getCards()) {
+				for (Card card : playersList.get(i).getCards()) {
 					
-					if (card.isActive()) {
+					if ((board.get(selectedSquareY).get(selectedSquareX).getCards().size() < 4)
+						&&(card.isActive())) {
 						
 						board.get(selectedSquareY).get(selectedSquareX).addPlayerCard(card);
 						
-						System.out.println("Kortos " + board.get(selectedSquareY).get(selectedSquareX).getCards().size());
-						for (int i=0; i<board.get(selectedSquareY).get(selectedSquareX).getCards().size(); i++) {
-							
-							System.out.println(board.get(selectedSquareY).get(selectedSquareX).getCards().get(i).getValue());
-						}
+						playersList.get(i).setIsItMyTurn(false);
+						if(i == playersList.size() - 1)
+							playersList.get(0).setIsItMyTurn(true);
+						else
+							playersList.get(i + 1).setIsItMyTurn(true);
 						
-						player.removeCardFromDeck(card.getValue());
+						playersList.get(i).removeCardFromDeck(card.getValue());
 						
-						//System.out.println("y = "+selectedSquareY+ ", x = " + selectedSquareX);
 					}
 					
 				}
