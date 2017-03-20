@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
+import dataStructures.Card;
 import dataStructures.Player;
 import dataStructures.Square;
 import drawer.CardsDecksDrawer;
@@ -26,10 +29,10 @@ public class Main extends JPanel{
 	
 	private TableDrawer td = new TableDrawer();
 	
+	private GameLogicHandler gameLogicHandler;
+	
 	public static void main(String[] args) {
 		new MainFrame();
-		//new Main();
-	
 	}
 	
 	public Main() {
@@ -51,27 +54,19 @@ public class Main extends JPanel{
 		playersList.get(1).setCardsColor(Color.green);
 		playersList.get(2).setCardsColor(Color.orange);
 		
-		playersList.get(0).removeCardFromDeck(6);
-		
-		playersList.get(2).removeCardFromDeck(1);
-		playersList.get(2).removeCardFromDeck(9);
-		playersList.get(2).removeCardFromDeck(10);
 		
 		playersList.get(0).setIsItMyTurn(true);
 		
-		this.addMouseListener(new BoardListener(this, playersList, board));
+		
+		gameLogicHandler = new GameLogicHandler(playersList, board);
+		
+		this.addMouseListener(new BoardListener(this, playersList, board, gameLogicHandler));
 		
 		this.addMouseListener(new ChosenCardListener(this, playersList, cdd.getMargin_top(), 
 													 cdd.getMargin_left(), cdd.getCardHeight(), 
 													 cdd.getCardWidth()));
 		this.setFocusable(true);
 		
-		
-
-		//drawer.drawCardInTable(g, 1, 1, playersList.get(2), 6);
-		
-
-			
 	}
 	
 	@Override
@@ -79,24 +74,41 @@ public class Main extends JPanel{
 
 		super.paintComponents(g);
 		
-		g.setColor(Color.lightGray);
-		g.fillRect(0, 0, 1000, 400);
-	
-		td.drawTable(g);
+		if(!gameLogicHandler.isGameOver()){
 		
-		//td.drawCardInTable(g, 1, 1, playersList.get(0), 10);
-//		td.drawCardInTable(g, 0, 1, playersList.get(1), 10);
-		//td.drawCardInTable(g, 1, 2, playersList.get(1), 8);
-		td.drawCardsInTable(g, board);
+			g.setColor(Color.lightGray);
+			g.fillRect(0, 0, 1000, 400);
 		
-		cdd.drawCardsDecks(g, playersList);
+			td.drawTable(g);
+			
+			td.drawCardsInTable(g, board);
+			
+			cdd.drawCardsDecks(g, playersList);
 		
 		
+		} else {	
+			
+			gameLogicHandler.calculateScore();
+			
+			g.setColor(Color.lightGray);
+			g.fillRect(0, 0, 1000, 400);
+		
+			td.drawTable(g);
+			
+			td.drawCardsInTable(g, board);
+			
+			cdd.drawCardsDecks(g, playersList);
+			
+			g.setFont(new Font("Monospaced", Font.BOLD, 20));
+			g.drawString("Winner's ID: " + gameLogicHandler.getWinnerID() 
+							+ ". He/She has " + gameLogicHandler.getWinnerResult() 
+							+ " points" , 10, 25);
+
+			
+			
+		}
 			
 	}
-	
-	
-	
-	
+
 
 }

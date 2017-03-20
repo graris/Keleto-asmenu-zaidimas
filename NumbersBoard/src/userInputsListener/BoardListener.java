@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import dataStructures.Card;
 import dataStructures.Player;
 import dataStructures.Square;
+import main.GameLogicHandler;
 
 public class BoardListener extends MouseAdapter{	
 	
@@ -19,16 +20,20 @@ public class BoardListener extends MouseAdapter{
 	
 	private ArrayList<ArrayList<Square>> board;
 	
+	private GameLogicHandler glh;
+	
 	private int margin_top = 10, 
 				margin_left = 600,
 				squareHeight = 100,
 				squareWidth = 100;
 	
 	public BoardListener(JPanel panel, ArrayList<Player> playersList, ArrayList<ArrayList<Square>> board,
-							  int margin_top, int margin_left, int cardHeight, int cardWidth) {
+						 GameLogicHandler glh, int margin_top, int margin_left, int cardHeight, 
+						 int cardWidth) {
 		
 		this.panel = panel;
 		this.playersList = playersList;
+		this.glh = glh;
 		
 		this.margin_top = margin_top; 
 		this.margin_left = margin_left;
@@ -36,11 +41,14 @@ public class BoardListener extends MouseAdapter{
 		this.squareWidth = cardWidth;
 	}
 	
-	public BoardListener(JPanel panel, ArrayList<Player> playersList, ArrayList<ArrayList<Square>> board) {
+	public BoardListener(JPanel panel, ArrayList<Player> playersList, ArrayList<ArrayList<Square>> board,
+			GameLogicHandler glh) {
 
 		this.panel = panel;
 		this.playersList = playersList;
 		this.board = board;
+		this.glh = glh;
+		
 	}	
 	@Override
 	public void mouseClicked(MouseEvent evt) {
@@ -69,7 +77,12 @@ public class BoardListener extends MouseAdapter{
 						else
 							playersList.get(i + 1).setIsItMyTurn(true);
 						
+						
 						playersList.get(i).removeCardFromDeck(card.getValue());
+						
+						glh.checkIfGameIsOver(playersList);
+						
+						
 						
 					}
 					

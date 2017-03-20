@@ -52,9 +52,7 @@ public class ChosenCardListener extends MouseAdapter{
 			
 				
 			playersList.get(currentPlayerID).getCards().get(selectedCard).setActive(true);
-			
-			
-			
+				
 		}
 
 		panel.repaint();
