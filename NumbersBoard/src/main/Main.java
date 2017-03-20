@@ -31,6 +31,8 @@ public class Main extends JPanel{
 	
 	private GameLogicHandler gameLogicHandler;
 	
+	private boolean gameIsOver = false;
+	
 	public static void main(String[] args) {
 		new MainFrame();
 	}
@@ -87,7 +89,7 @@ public class Main extends JPanel{
 		
 		
 		} else {	
-			
+			gameLogicHandler.calculateScore();
 			gameLogicHandler.calculateScore();
 			
 			g.setColor(Color.lightGray);
@@ -105,6 +107,7 @@ public class Main extends JPanel{
 							+ " points" , 10, 25);
 
 			
+		gameIsOver = gameLogicHandler.isGameOver(playersList);
 			
 		}
 			
