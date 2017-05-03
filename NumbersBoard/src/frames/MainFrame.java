@@ -18,7 +18,9 @@ public class MainFrame extends JFrame{
 		init();
 	}
 	
-	
+	/**
+	 * inits main JFrame which holds layout
+	 */
 	private void init() {
 		setLocationRelativeTo(null);
 		

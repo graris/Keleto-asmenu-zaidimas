@@ -49,7 +49,11 @@ public class BoardListener extends MouseAdapter{
 		this.board = board;
 		this.glh = glh;
 		
-	}	
+	}
+	
+	/**
+	 * Tracks and responds to mouse clicks
+	 */
 	@Override
 	public void mouseClicked(MouseEvent evt) {
 		

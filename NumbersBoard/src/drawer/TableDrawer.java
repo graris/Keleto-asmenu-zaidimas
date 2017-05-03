@@ -10,6 +10,9 @@ import dataStructures.Square;
 
 public class TableDrawer {
 	
+	/**
+	 * Draws table bounds
+	 */
 	public void drawTable(Graphics g){
 		
 		g.setColor(Color.BLACK);
@@ -20,6 +23,9 @@ public class TableDrawer {
 		g.drawLine(600, 210, 900, 210);
 	}
 
+	/**
+	 * Draws all Cards in a table
+	 */
 	public void drawCardsInTable(Graphics g, ArrayList<ArrayList<Square>> board){		
 		
 		int tableCellX = 0;

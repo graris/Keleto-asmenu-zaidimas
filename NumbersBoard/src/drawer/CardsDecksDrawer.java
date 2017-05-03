@@ -26,34 +26,58 @@ public class CardsDecksDrawer {
 		this.cardWidth = cardWidth;
 	}
 
+	/**
+	 * Get Card margin from top
+	 */
 	public int getMargin_top() {
 		return margin_top;
 	}
 
+	/**
+	 * Set Card margin from top
+	 */
 	public void setMargin_top(int margin_top) {
 		this.margin_top = margin_top;
 	}
 
+	/**
+	 * Set Gard margin from left
+	 */
 	public int getMargin_left() {
 		return margin_left;
 	}
 
+	/**
+	 * Set Card margin from left
+	 */
 	public void setMargin_left(int margin_left) {
 		this.margin_left = margin_left;
 	}
 
+	/**
+	 * Get Card height
+	 */
 	public int getCardHeight() {
 		return cardHeight;
 	}
 
+	/**
+	 * Set Card height
+	 */
 	public void setCardHeight(int cardHeight) {
 		this.cardHeight = cardHeight;
 	}
 
+	/**
+	 * Get Card height
+	 */
 	public int getCardWidth() {
 		return cardWidth;
 	}
 
+	/**
+	 * Set Card width
+	 */
 	public void setCardWidth(int cardWidth) {
 		this.cardWidth = cardWidth;
 	}
@@ -75,6 +99,9 @@ public class CardsDecksDrawer {
 
 	}
 
+	/**
+	 * Draws Cards deck
+	 */
 	public void drawCardsDecks(Graphics g, ArrayList<Player> playersList, 
 							   int margin_top, int margin_left, int cardHeight, int cardWidth) {
 		

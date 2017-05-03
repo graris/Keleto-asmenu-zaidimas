@@ -3,6 +3,9 @@ package dataStructures;
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ * Contains information about the player
+ */
 public class Player {
 	
 	private boolean ItIsMyTurn = false;
@@ -14,14 +17,24 @@ public class Player {
 			cardsDeck.add(new Card(i, false, this));
 	}
 
+
+	/**
+	 * Check if it's my turn
+	 */
 	public boolean IsItMyTurn() {
 		return ItIsMyTurn;
 	}
 
+	/**
+	 * Change turn value
+	 */
 	public void setIsItMyTurn(boolean isItMyTurn) {
 		this.ItIsMyTurn = isItMyTurn;
 	}
 	
+	/**
+	 * Removes card from deck 
+	 */
 	public void removeCardFromDeck(int cardValue){
 		
 		for(int i = 0; i <cardsDeck.size(); i++) 		
@@ -30,14 +43,23 @@ public class Player {
 		
 	}
 
+	/**
+	 * Retrieve Card list
+	 */
 	public ArrayList<Card> getCards() {
 		return cardsDeck;
 	}
 
+	/**
+	 * Retrieve color list
+	 */
 	public Color getCardsColor() {
 		return cardsColor;
 	}
 
+	/**
+	 * Set color list
+	 */
 	public void setCardsColor(Color cardsColor) {
 		this.cardsColor = cardsColor;
 	}	

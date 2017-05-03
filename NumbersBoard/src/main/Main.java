@@ -71,6 +71,9 @@ public class Main extends JPanel{
 		
 	}
 	
+	/**
+	 * Paint the whole board
+	 */
 	@Override
 	public void paint(Graphics g) {
 

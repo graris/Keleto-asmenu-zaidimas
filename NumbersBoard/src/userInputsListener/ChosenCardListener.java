@@ -33,7 +33,9 @@ public class ChosenCardListener extends MouseAdapter{
 		this.cardWidth = cardWidth;
 	}
 	
-	
+	/**
+	 * Responds to mouse clicks on cards
+	 */
 	@Override
 	public void mouseClicked(MouseEvent evt) {
 		int x = evt.getX();

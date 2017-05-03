@@ -2,34 +2,39 @@ package dataStructures;
 
 import java.util.ArrayList;
 
+/**
+ * Square is responsible for storing card information for one specific square
+ */
 public class Square {
 	
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private ArrayList<Player> players = new ArrayList<Player>();
 	
+	/**
+	 * Adds new Player card
+	 */
 	public void addPlayerCard(Card card){
-//		boolean alreadyExists = false;
-//		for (int i=0; i<cards.size();i++) 
-//			if () {
-//				
-//				
-//				alreadyExists = true;
-//			}
-//		
-//		if () {
 		cards.add(card);
 		players.add(card.getOwner());
-//		}
 	}
 
+	/**
+	 * Retrieve card list
+	 */
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
 
+	/**
+	 * Retrieve player list
+	 */
 	public ArrayList<Player> getPlayers() {
 		return players;
-}
+	}
 
+	/**
+	 * Check if card list is empty
+	 */
 	public boolean isEmpty() {
 		
 		if(cards.size() == 0)
